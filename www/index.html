@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <link rel="manifest" href="manifest.json">
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+</head>
+
+<body ng-app="Jackpot" ng-controller="RootController as rootCtrl">
+    <ion-side-menus enable-menu-with-back-views="false">
+        <!-- Left menu -->
+        <ion-side-menu side="left" menu-toggle="left" expose-aside-when="large">
+            <ion-header-bar class="bar-positive">
+                <h1 class="title">Jackpot</h1>
+            </ion-header-bar>
+            <ion-content>
+                <div class="list">
+                    <a data-ui-sref="jackpot" class="item">
+                        Ngẫu nhiên Jackpot
+                    </a>
+                    <a data-ui-sref="nRandom" class="item">
+                        Sinh số ngẫu nhiên
+                    </a>
+                    <a data-ui-sref="nRandomFast" class="item">
+                        Sinh số nhanh
+                    </a>
+                    <a data-ui-sref="saveLog" class="item">
+                        Lưu trữ Jackpot
+                    </a>
+                    <a data-ui-sref="randomLog" class="item">
+                        Lịch sử ngẫu nhiên
+                    </a>
+                </div>
+            </ion-content>
+        </ion-side-menu>
+
+        <ion-side-menu-content edge-drag-threshold="true" drag-content="true">
+            <ion-nav-bar class="bar-positive">
+                <ion-nav-buttons side="primary">
+                    <button menu-toggle="left" class="button button-icon icon ion-navicon">
+                    </button>
+                </ion-nav-buttons>
+                <ion-nav-back-button>
+                </ion-nav-back-button>
+            </ion-nav-bar>
+            <ion-nav-view>
+                <ion-view>
+                    <ion-content>
+                    </ion-content>
+                </ion-view>
+            </ion-nav-view>
+        </ion-side-menu-content>
+    </ion-side-menus>
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/root.controller.js"></script>
+    <script src="js/jackpot.controller.js"></script>
+</body>
+
+</html>

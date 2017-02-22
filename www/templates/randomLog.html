@@ -1,0 +1,36 @@
+<ion-view view-title="Lịch sử ngẫu nhiên" ng-init="jackpot.randomLogInit()">
+    <ion-content>
+        <div ng-if="jackpot.listRandomLog && jackpot.listRandomLog.length">
+            <div ng-if="jackpot.suggestNumber && jackpot.suggestNumber.length">
+                <div class="suggest">
+                    Dãy số đề xuất
+                </div>
+
+                <div class="suggest">
+                    <div class="suggest-item" ng-repeat="item in jackpot.suggestNumber">
+                        {{jackpot.renderNumber(item)}}
+                        <div ng-if="!jackpot.runningNRandom" ng-bind="jackpot.getRandomLog(item)" class="item-random-log"></div>
+                    </div>
+                </div>
+
+                <div class="suggest">
+                    <button ng-if="jackpot.suggestNumber.length == 6 && !jackpot.runningNRandom" class="button button-small button-royal" ng-class="jackpot.checkSaved(jackpot.suggestNumber) ? '' : 'button-outline'" ng-click="jackpot.checkSaved(jackpot.suggestNumber) ? jackpot.unSave(jackpot.suggestNumber) : jackpot.save(jackpot.suggestNumber)"
+                        ng-bind="jackpot.checkSaved(jackpot.suggestNumber) ? 'Đã lưu trữ, hủy lưu' : 'Lưu trữ dãy kết quả'"></button>
+                </div>
+
+            </div>
+            <div ng-click="jackpot.clearRandomLog()" class="button button-block button-calm">Đặt lại thống kê</div>
+            <div class="list list-inset">
+                <div class="item" ng-repeat="item in jackpot.listRandomLog track by $index">
+                    Số ngẫu nhiên <strong>{{jackpot.renderNumber(item.key)}}</strong>
+                    <span class="item-note">
+                   Xuất hiện <strong>{{item.value}}</strong> lần
+                </span>
+                </div>
+            </div>
+        </div>
+        <div ng-if="!jackpot.listRandomLog || !jackpot.listRandomLog.length">
+            <div class="button button-block" ng-disabled="true">Chưa có thống kê</div>
+        </div>
+    </ion-content>
+</ion-view>

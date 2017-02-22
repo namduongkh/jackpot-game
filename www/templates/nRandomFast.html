@@ -1,0 +1,54 @@
+<ion-view view-title="Sinh số nhanh" ng-init="jackpot.fastInit()">
+    <ion-content>
+        <button disabled class="button button-block">
+            Sẽ tiến hành sinh số nhanh <strong ng-bind="jackpot.fastCount"></strong> lượt.            
+        </button>
+        <div class="list">
+            <div class="item range range-positive">
+                <i class="icon ion-ios-minus-outline"></i>
+                <input type="range" name="nRandomSpeed" id="nRandomSpeed" min="100" max="10000" ng-model="jackpot.fastCount">
+                <i class="icon ion-ios-plus-outline"></i>
+            </div>
+        </div>
+
+        <div class="row">
+            <button ng-if="!jackpot.nRandomCount" class="col button button-block button-royal" ng-click="jackpot.startFast()" ng-bind="'Bắt đầu chạy'"></button>
+            <button ng-if="jackpot.nRandomCount" class="col button button-block button-royal" ng-click="jackpot.startFast()" ng-bind="'Tiếp tục chạy'"></button>
+            <button ng-if="jackpot.nRandomCount" class="col button button-block button-assertive" ng-click="jackpot.fastInit();jackpot.startFast()" ng-bind="'Bắt đầu lại'"></button>
+        </div>
+
+
+        <div class="button button-block button-small" ng-disabled="true" ng-bind="'Đã chạy tự sinh ' + jackpot.nRandomCount + ' lượt'"></div>
+
+        <div ng-if="jackpot.suggestNumber && jackpot.suggestNumber.length">
+            <div class="suggest">
+                Dãy số đề xuất
+            </div>
+
+            <div class="suggest">
+                <div class="suggest-item" ng-repeat="item in jackpot.suggestNumber">
+                    {{jackpot.renderNumber(item)}}
+                    <div ng-if="!jackpot.runningNRandom" ng-bind="jackpot.getNRandomLog(item)" class="item-random-log"></div>
+                </div>
+            </div>
+
+            <div class="suggest">
+                <button ng-if="jackpot.suggestNumber.length == 6 && !jackpot.runningNRandom" class="button button-small button-royal" ng-class="jackpot.checkSaved(jackpot.suggestNumber) ? '' : 'button-outline'" ng-click="jackpot.checkSaved(jackpot.suggestNumber) ? jackpot.unSave(jackpot.suggestNumber) : jackpot.save(jackpot.suggestNumber)"
+                    ng-bind="jackpot.checkSaved(jackpot.suggestNumber) ? 'Đã lưu trữ, hủy lưu' : 'Lưu trữ dãy kết quả'"></button>
+            </div>
+        </div>
+
+        <div class="list list-inset">
+            <div class="item item-divider">
+                Ngẫu nhiên nhiều nhất sau {{jackpot.nRandomCount}} lượt
+            </div>
+            <div class="item" ng-repeat="item in jackpot.nRandomList track by $index">
+                Số <strong>{{jackpot.renderNumber(item.key)}}</strong> ngẫu nhiên xuất hiện <strong>{{item.value}}</strong> lần. (Tổng: {{jackpot.getRandomLog(item.key)}} lần)
+            </div>
+            <div ng-if="!jackpot.nRandomList || !jackpot.nRandomList.length" class="item">
+                <div class="button button-block" ng-disabled="true">Chưa có thống kê</div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
