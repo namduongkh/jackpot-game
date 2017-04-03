@@ -23,11 +23,11 @@
         <div class="suggest">
             <button ng-if="(item && jackpot.step > ($index+1)) || jackpot.checkFullResult()" class="button button-royal" ng-class="jackpot.checkSaved() ? '' : 'button-outline'" ng-click="jackpot.checkSaved() ? jackpot.unSave() : jackpot.save()" ng-bind="jackpot.checkSaved() ? 'Đã lưu trữ, hủy lưu' : 'Lưu trữ dãy kết quả'"></button>
         </div>
-        <button class="button button-block button-calm" ng-click="jackpot.start()" ng-bind="jackpot.startLabel"></button>
+        <button class="button button-block button-assertive" ng-click="jackpot.start()" ng-bind="jackpot.startLabel"></button>
         <button ng-disabled="jackpot.disabled_random6" class="button button-block button-balanced" ng-click="jackpot.quick()">Ngẫu nhiên <span ng-bind="(6 - jackpot.step +1) >= 6 ? 6 : (6 - jackpot.step +1)"></span> số</button>
         <!--<a href="javascript:void(0);" ng-disabled="main.disallowClick" class="button button-block button-positive" ng-click="main.toggleRun()">{{main.labelRun()}}</a>-->
 
-        <div class="list list-inset">
+        <div class="list">
             <div class="item item-divider">
                 Thống kê 6 số ngẫu nhiên nhiều nhất
             </div>

@@ -15,7 +15,7 @@
 
         <div class="row">
             <button ng-if="!jackpot.runningNRandom && jackpot.nRandomCount" class="col button button-block button-royal" ng-click="jackpot.runNRandom()" ng-bind="'Tiếp tục chạy'"></button>
-            <button ng-if="!jackpot.runningNRandom" class="col button button-block button-calm" ng-click="jackpot.nRandomInit(); jackpot.runNRandom()" ng-bind="jackpot.nRandomCount ? 'Bắt đầu lại' : 'Chạy sinh số ngẫu nhiên'"></button>
+            <button ng-if="!jackpot.runningNRandom" class="col button button-block button-balanced" ng-click="jackpot.nRandomInit(); jackpot.runNRandom()" ng-bind="jackpot.nRandomCount ? 'Bắt đầu lại' : 'Chạy sinh số ngẫu nhiên'"></button>
             <button ng-if="jackpot.runningNRandom" class="col button button-block button-assertive" ng-click="jackpot.stopNRandom()" ng-bind="'Dừng sinh số ngẫu nhiên'"></button>
         </div>
 
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="list list-inset">
+        <div class="list ">
             <div class="item item-divider">
                 Ngẫu nhiên nhiều nhất sau {{jackpot.nRandomCount}} lượt
             </div>

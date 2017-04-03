@@ -2,7 +2,7 @@
     <ion-content>
         <div ng-if="jackpot.saveLogList && jackpot.saveLogList.length">
             <div ng-click="jackpot.unSaveAll()" class="button button-block button-assertive">Xóa tất cả</div>
-            <div class="list list-inset">
+            <div class="list">
                 <div class="item" ng-repeat="item in jackpot.saveLogList track by $index">
                     <!--<div class="row">-->
                     <span class="savelog-number" ng-repeat="number in item">

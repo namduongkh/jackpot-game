@@ -25,33 +25,68 @@ angular.module('Jackpot', ['ionic', 'LocalStorageModule'])
 
 .config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
     $stateProvider
-        .state('jackpot', {
+        .state('app', {
+            url: '/app',
+            abstract: true,
+            templateUrl: 'templates/menu.html',
+            controller: 'RootController as rootCtrl'
+        })
+        .state('app.jackpot', {
             url: '/jackpot',
-            templateUrl: 'templates/jackpot.html',
-            controller: 'JackpotCtrl as jackpot',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/jackpot.html',
+                    controller: 'JackpotCtrl as jackpot',
+                }
+            }
         })
-        .state('randomLog', {
+        .state('app.randomLog', {
             url: '/randomLog',
-            templateUrl: 'templates/randomLog.html',
-            controller: 'JackpotCtrl as jackpot',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/randomLog.html',
+                    controller: 'JackpotCtrl as jackpot',
+                }
+            }
         })
-        .state('nRandom', {
+        .state('app.nRandom', {
             url: '/nRandom',
-            templateUrl: 'templates/nRandom.html',
-            controller: 'JackpotCtrl as jackpot',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/nRandom.html',
+                    controller: 'JackpotCtrl as jackpot',
+                }
+            }
         })
-        .state('saveLog', {
+        .state('app.saveLog', {
             url: '/saveLog',
-            templateUrl: 'templates/saveLog.html',
-            controller: 'JackpotCtrl as jackpot'
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/saveLog.html',
+                    controller: 'JackpotCtrl as jackpot'
+                }
+            }
         })
-        .state('nRandomFast', {
+        .state('app.statistic', {
+            url: '/statistic',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/statistic.html',
+                    controller: 'StatisticCtrl as statistic'
+                }
+            }
+        })
+        .state('app.nRandomFast', {
             url: '/nRandomFast',
-            templateUrl: 'templates/nRandomFast.html',
-            controller: 'JackpotCtrl as jackpot'
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/nRandomFast.html',
+                    controller: 'JackpotCtrl as jackpot'
+                }
+            }
         });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/jackpot');
+    $urlRouterProvider.otherwise('/app/jackpot');
     localStorageServiceProvider
         .setPrefix('Jackpot')
         .setStorageCookie(365 * 50, '/', false);
