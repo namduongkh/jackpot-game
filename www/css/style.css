@@ -178,3 +178,26 @@
         font-size: 12px;
     }
 }
+
+.table {
+    width: 100%;
+}
+
+.table th,
+.table td {
+    padding: 5px 0;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.table thead {
+    background: #ccc;
+}
+
+.table a {
+    color: #000;
+}
+
+.table td span {
+    color: orangered;
+}

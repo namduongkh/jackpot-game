@@ -11,7 +11,9 @@
         jackpot.startLabel = "Bắt đầu";
         jackpot.step = 0;
         jackpot.disabled_random6 = false;
-        jackpot.defaultResult = [null, null, null, null, null, null];
+        jackpot.defaultResult = function() {
+            return [null, null, null, null, null, null];
+        };
 
         function initSaveLog() {
             jackpot.saveLog = JackpotSvc.getSaveLog() || [];
@@ -120,7 +122,7 @@
 
         function initResult() {
             jackpot.renderRandom = null;
-            jackpot.result = jackpot.defaultResult;
+            jackpot.result = jackpot.defaultResult();
         }
 
         function setAndLogResult(pos, value) {
@@ -282,7 +284,7 @@
             });
             jackpot.nRandomLog = {};
             jackpot.nRandomList = [];
-            jackpot.suggestNumber = jackpot.defaultResult;
+            jackpot.suggestNumber = jackpot.defaultResult();
             jackpot.allowMin = 0;
             jackpot.limitRandomOneTurn = 1000;
         };
@@ -332,7 +334,7 @@
             }).sort(function(a, b) {
                 return a - b;
             });
-            jackpot.suggestNumber = jackpot.suggestNumber.concat(jackpot.defaultResult);
+            jackpot.suggestNumber = jackpot.suggestNumber.concat(jackpot.defaultResult());
             jackpot.suggestNumber = jackpot.suggestNumber.splice(0, 6);
             $scope.$apply();
         }

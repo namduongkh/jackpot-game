@@ -1,22 +1,27 @@
-<ion-view view-title="Thống kê">
+<ion-view view-title="Kết quả quay thưởng">
     <ion-content>
-        <!--<h1>Thống kê</h1>-->
-        <div class="list list-inset">
+        <!--<div class="list list-inset">
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
                 <input type="number" min="0" max="45" step="1" ng-model="statistic.filterNumber" placeholder="Lọc số thống kê">
             </label>
         </div>
         <ul ng-if="statistic.statisticData.length" class="list">
-            <!--<li class="item" ng-repeat="item in statistic.statisticData track by $index">{{$index + 1}}: {{item}}</li>-->
             <li class="item item-icon-left" ng-repeat="item in (statistic.statisticData | statisticNumber:statistic.filterNumber) track by $index">
                 <i class="icon ion-ios-information-outline"></i> Số lần xuất hiện của <strong>{{rootCtrl.processNumber(item.key)}}</strong>:
                 <span class="badge badge-assertive">{{item.value}}</span>
             </li>
-        </ul>
-        <button ng-if="!statistic.statisticData.length" class="button button-full button-default" disabled>
-            Không có dữ liệu thống kê
+        </ul>-->
+        <button ng-if="!winning.winningData" class="button button-full button-default" disabled>
+            Không có dữ liệu
         </button>
-        <div ng-bind-html="winning.winningData"></div>
+        <table class="table" ng-if="winning.winningData">
+            <thead>
+                <th>Ngày quay thưởng</th>
+                <th>Kết quả</th>
+            </thead>
+            <tbody ng-bind-html="winning.winningData">
+            </tbody>
+        </table>
     </ion-content>
 </ion-view>

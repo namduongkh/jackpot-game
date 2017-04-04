@@ -32,8 +32,8 @@
                 if (randomData && randomData[number]) {
                     random = randomData[number]
                 }
-                if (statisticData && statisticData.data && statisticData.data[number]) {
-                    statistic = Number(statisticData.data[number].value);
+                if (statisticData && statisticData.data && statisticData.data[Number(number)]) {
+                    statistic = Number(statisticData.data[Number(number)].value);
                 }
                 return { random, statistic };
             },
