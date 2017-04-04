@@ -25,12 +25,14 @@
                 Dãy số đề xuất
             </div>
 
-            <div class="suggest">
+            <suggest-number></suggest-number>
+
+            <!--<div class="suggest">
                 <div class="suggest-item" ng-repeat="item in jackpot.suggestNumber">
                     {{jackpot.renderNumber(item)}}
                     <div ng-if="!jackpot.runningNRandom" ng-bind="jackpot.getNRandomLog(item)" class="item-random-log"></div>
                 </div>
-            </div>
+            </div>-->
 
             <div class="suggest">
                 <button ng-if="jackpot.suggestNumber.length == 6 && !jackpot.runningNRandom" class="button button-small button-royal" ng-class="jackpot.checkSaved(jackpot.suggestNumber) ? '' : 'button-outline'" ng-click="jackpot.checkSaved(jackpot.suggestNumber) ? jackpot.unSave(jackpot.suggestNumber) : jackpot.save(jackpot.suggestNumber)"

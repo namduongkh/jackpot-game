@@ -5,19 +5,20 @@
         .module("Jackpot")
         .controller("JackpotCtrl", JackpotCtrl);
 
-    function JackpotCtrl($scope, $timeout, localStorageService, $rootScope, $state) {
+    function JackpotCtrl($scope, $timeout, localStorageService, $rootScope, $state, JackpotSvc) {
         // console.log("Start!");
         var jackpot = this;
         jackpot.startLabel = "Bắt đầu";
         jackpot.step = 0;
         jackpot.disabled_random6 = false;
+        jackpot.defaultResult = [null, null, null, null, null, null];
 
         function initSaveLog() {
-            jackpot.saveLog = localStorageService.get('saveLog') || [];
+            jackpot.saveLog = JackpotSvc.getSaveLog() || [];
         }
 
         function initRandomLog() {
-            jackpot.randomLog = localStorageService.get('randomLog') || {};
+            jackpot.randomLog = JackpotSvc.getRandomLog() || {};
         }
 
         var calculate = function(n) {
@@ -119,7 +120,7 @@
 
         function initResult() {
             jackpot.renderRandom = null;
-            jackpot.result = [null, null, null, null, null, null];
+            jackpot.result = jackpot.defaultResult;
         }
 
         function setAndLogResult(pos, value) {
@@ -128,15 +129,20 @@
                 jackpot.randomLog[value] = 0;
             }
             jackpot.randomLog[value]++;
-            localStorageService.set('randomLog', jackpot.randomLog);
+            JackpotSvc.setRandomLog(jackpot.randomLog);
             // console.log(jackpot.result);
         }
 
         jackpot.getRandomLog = function(number) {
-            if (number) {
-                return jackpot.randomLog[number] || 0;
-            }
-            return;
+            // if (number) {
+            //     return jackpot.randomLog[number] || 0;
+            // }
+            // return;
+            return JackpotSvc.getNumberData(number).random;
+        };
+
+        jackpot.getStatisticLog = function(number) {
+            return JackpotSvc.getNumberData(number).statistic;
         };
 
         jackpot.getNRandomLog = function(number) {
@@ -178,7 +184,7 @@
         jackpot.save = function(list) {
             var list = list || jackpot.result;
             jackpot.saveLog.unshift(list.join(","));
-            localStorageService.set('saveLog', jackpot.saveLog);
+            JackpotSvc.setSaveLog(jackpot.saveLog);
             // console.log(jackpot.saveLog);
         };
 
@@ -205,7 +211,7 @@
                 if (jackpot.saveLogList && jackpot.saveLogList.length) {
                     jackpot.saveLogList.splice(index, 1);
                 }
-                localStorageService.set('saveLog', jackpot.saveLog);
+                JackpotSvc.setSaveLog(jackpot.saveLog);
             }
             // console.log(jackpot.saveLog);
         };
@@ -248,14 +254,14 @@
             if (confirm("Bạn có chắc chắn xóa tất cả?")) {
                 jackpot.saveLog = [];
                 jackpot.saveLogList = [];
-                localStorageService.set('saveLog', jackpot.saveLog);
+                JackpotSvc.setSaveLog(jackpot.saveLog);
             }
         };
 
         jackpot.clearRandomLog = function() {
             if (confirm("Bạn có chắc chắn xóa tất cả?")) {
                 jackpot.randomLog = {};
-                localStorageService.set('randomLog', jackpot.randomLog);
+                JackpotSvc.setRandomLog(jackpot.randomLog);
                 jackpot.getListRandomLog();
             }
         };
@@ -276,7 +282,7 @@
             });
             jackpot.nRandomLog = {};
             jackpot.nRandomList = [];
-            jackpot.suggestNumber = [];
+            jackpot.suggestNumber = jackpot.defaultResult;
             jackpot.allowMin = 0;
             jackpot.limitRandomOneTurn = 1000;
         };
@@ -304,7 +310,7 @@
                 jackpot.randomLog[jackpot.renderRandom] = 0;
             }
             jackpot.randomLog[jackpot.renderRandom]++;
-            localStorageService.set('randomLog', jackpot.randomLog);
+            JackpotSvc.setRandomLog(jackpot.randomLog);
             jackpot.getListRandomLog(6);
             //---------------------------
             var list = [];
@@ -326,7 +332,8 @@
             }).sort(function(a, b) {
                 return a - b;
             });
-            // console.log("Suggest", jackpot.suggestNumber);
+            jackpot.suggestNumber = jackpot.suggestNumber.concat(jackpot.defaultResult);
+            jackpot.suggestNumber = jackpot.suggestNumber.splice(0, 6);
             $scope.$apply();
         }
 
@@ -402,7 +409,7 @@
                 // $scope.$apply();
             }
             jackpot.nRandomCount += Number(jackpot.fastCount);
-            localStorageService.set('randomLog', jackpot.randomLog);
+            JackpotSvc.setRandomLog(jackpot.randomLog);
             jackpot.getListRandomLog(6);
             //---------------------------
             var list = [];

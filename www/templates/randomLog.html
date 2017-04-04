@@ -6,12 +6,14 @@
                     Dãy số đề xuất
                 </div>
 
-                <div class="suggest">
+                <!--<div class="suggest">
                     <div class="suggest-item" ng-repeat="item in jackpot.suggestNumber">
                         {{jackpot.renderNumber(item)}}
                         <div ng-if="!jackpot.runningNRandom" ng-bind="jackpot.getRandomLog(item)" class="item-random-log"></div>
                     </div>
-                </div>
+                </div>-->
+
+                <suggest-number></suggest-number>
 
                 <div class="suggest">
                     <button ng-if="jackpot.suggestNumber.length == 6 && !jackpot.runningNRandom" class="button button-small button-royal" ng-class="jackpot.checkSaved(jackpot.suggestNumber) ? '' : 'button-outline'" ng-click="jackpot.checkSaved(jackpot.suggestNumber) ? jackpot.unSave(jackpot.suggestNumber) : jackpot.save(jackpot.suggestNumber)"
@@ -19,9 +21,15 @@
                 </div>
 
             </div>
-            <div ng-click="jackpot.clearRandomLog()" class="button button-block button-calm">Đặt lại thống kê</div>
+            <div ng-click="jackpot.clearRandomLog()" class="button button-block button-assertive">Đặt lại thống kê</div>
+            <div class="list list-inset">
+                <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="number" min="0" max="45" step="1" ng-model="jackpot.filterNumber" placeholder="Lọc số thống kê">
+            </label>
+            </div>
             <div class="list">
-                <div class="item" ng-repeat="item in jackpot.listRandomLog track by $index">
+                <div class="item" ng-repeat="item in (jackpot.listRandomLog | randomNumber:jackpot.filterNumber) track by $index">
                     Số ngẫu nhiên <strong>{{jackpot.renderNumber(item.key)}}</strong>
                     <span class="item-note">
                    Xuất hiện <strong>{{item.value}}</strong> lần

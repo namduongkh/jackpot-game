@@ -4,8 +4,11 @@
     angular.module("Jackpot")
         .controller('StatisticCtrl', StatisticCtrl);
 
-    function StatisticCtrl($http) {
+    function StatisticCtrl($http, JackpotSvc, $ionicPopup) {
         var statistic = this;
+
+        let data = JackpotSvc.getStatistic();
+        // console.log("Data", data);
 
         statistic.getStatisticData = function() {
             $http({
@@ -14,17 +17,48 @@
                 })
                 .then(function(resp) {
                     if (resp.status == 200) {
-                        statistic.statisticData = [];
+                        let statisticData = [];
                         resp.data.replace(/<div\sstyle="float:\sleft;\sfont-weight:\sbold;\spadding-left:\s10px;\spadding-top:\s5px;">(\d+)<\/div>\s/g, function(str, s1) {
-                            // console.log("S1", s1);
-                            statistic.statisticData.push(s1);
+                            statisticData.push({
+                                key: statisticData.length + 1,
+                                value: s1
+                            });
                         });
-                        // console.log("Thống kê", statisticData);
+                        statistic.statisticData = statisticData;
+                        JackpotSvc.setStatistic({
+                            date: new Date(),
+                            data: statisticData
+                        });
                     }
-                    // console.log("Resp", resp);
+                })
+                .catch(function(err) {
+                    if (data && data.data) {
+                        statistic.statisticData = data.data;
+                    }
+                    statistic.showAlert();
                 });
         };
 
-        statistic.getStatisticData();
+        if (!data ||
+            !data.date ||
+            new Date(data.date).toDateString() != new Date().toDateString()
+        ) {
+            statistic.getStatisticData();
+        } else {
+            statistic.statisticData = data.data;
+        }
+
+        statistic.showAlert = function() {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Thông báo',
+                template: '<div style="text-align: center;">Không cập nhật được dữ liệu thống kê, vui lòng kiểm tra truy cập Internet.</div>'
+            });
+
+            // alertPopup.then(function(res) {
+            //     console.log('Thank you for not eating my delicious ice cream cone');
+            // });
+        };
+
+        // console.log(JackpotSvc.getNumberData(40));
     }
 })();

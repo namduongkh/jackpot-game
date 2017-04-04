@@ -10,12 +10,14 @@
                 <div ng-repeat="item in jackpot.result track by $index" class="jackpot-result-item" ng-class="jackpot.checkFullResult() ? 'jackpot-result-item-text jackpot-result-item-large' : ''" ng-if="$index < 3">
                     <div ng-bind="item || jackpot.renderRandom || '?'"></div>
                     <div ng-if="(item && jackpot.step > ($index+1)) || jackpot.checkFullResult()" ng-bind="jackpot.getRandomLog(item)" class="item-random-log"></div>
+                    <div ng-if="(item && jackpot.step > ($index+1)) || jackpot.checkFullResult()" ng-bind="jackpot.getStatisticLog(item)" class="item-statistic-log"></div>
                 </div>
             </div>
             <div>
                 <div ng-repeat="item in jackpot.result track by $index" class="jackpot-result-item" ng-class="jackpot.checkFullResult() ? 'jackpot-result-item-text jackpot-result-item-large' : ''" ng-if="$index >= 3">
                     <div ng-bind="item || jackpot.renderRandom || '?'"></div>
                     <div ng-if="(item && jackpot.step > ($index+1)) || jackpot.checkFullResult()" ng-bind="jackpot.getRandomLog(item)" class="item-random-log"></div>
+                    <div ng-if="(item && jackpot.step > ($index+1)) || jackpot.checkFullResult()" ng-bind="jackpot.getStatisticLog(item)" class="item-statistic-log"></div>
                 </div>
             </div>
         </div>

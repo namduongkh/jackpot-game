@@ -93,6 +93,16 @@
     font-weight: 700;
 }
 
+.item-statistic-log {
+    font-size: 13px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: limegreen;
+    line-height: 7px;
+    font-weight: 700;
+}
+
 .jackpot-random-number {
     text-align: center;
     padding: 30px 0px;
