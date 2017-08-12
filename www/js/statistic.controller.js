@@ -7,7 +7,7 @@
     function StatisticCtrl($http, JackpotSvc, $ionicPopup) {
         var statistic = this;
 
-        let data = JackpotSvc.getStatistic();
+        var data = JackpotSvc.getStatistic();
         // console.log("Data", data);
 
         statistic.getStatisticData = function() {
@@ -17,7 +17,7 @@
                 })
                 .then(function(resp) {
                     if (resp.status == 200) {
-                        let statisticData = [];
+                        var statisticData = [];
                         resp.data.replace(/<div\sstyle="float:\sleft;\sfont-weight:\sbold;\spadding-left:\s10px;\spadding-top:\s5px;">(\d+)<\/div>\s/g, function(str, s1) {
                             statisticData.push({
                                 key: statisticData.length + 1,

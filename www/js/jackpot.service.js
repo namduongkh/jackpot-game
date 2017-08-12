@@ -25,10 +25,10 @@
                 localStorageService.set('statistic', log);
             },
             getNumberData: function(number) {
-                let random = 0;
-                let statistic = 0;
-                let randomData = this.getRandomLog();
-                let statisticData = this.getStatistic();
+                var random = 0;
+                var statistic = 0;
+                var randomData = this.getRandomLog();
+                var statisticData = this.getStatistic();
                 if (randomData && randomData[number]) {
                     random = randomData[number]
                 }
