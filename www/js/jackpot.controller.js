@@ -126,7 +126,6 @@
         }
 
         function setAndLogResult(pos, value) {
-            console.log("pos", pos);
             jackpot.result[pos] = value;
             if (!jackpot.randomLog[value]) {
                 jackpot.randomLog[value] = 0;
