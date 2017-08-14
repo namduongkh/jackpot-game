@@ -4,7 +4,7 @@
     angular.module("Jackpot")
         .service("JackpotSvc", JackpotSvc);
 
-    function JackpotSvc(localStorageService) {
+    function JackpotSvc(localStorageService, $rootScope) {
         return {
             getSaveLog: function() {
                 return localStorageService.get('saveLog') || [];
@@ -17,6 +17,7 @@
             },
             setSaveLog: function(log) {
                 localStorageService.set('saveLog', log);
+                $rootScope.$broadcast("REFRESH_SAVELOG", log);
             },
             setRandomLog: function(log) {
                 localStorageService.set('randomLog', log);

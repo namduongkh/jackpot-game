@@ -44,7 +44,7 @@
                 Ngẫu nhiên nhiều nhất sau {{jackpot.nRandomCount}} lượt
             </div>
             <div class="item" ng-repeat="item in jackpot.nRandomList track by $index">
-                Số <strong>{{jackpot.renderNumber(item.key)}}</strong> ngẫu nhiên xuất hiện <strong>{{item.value}}</strong> lần. (Tổng: {{jackpot.getRandomLog(item.key)}} lần)
+                Số <strong>{{jackpot.renderNumber(item.key)}}</strong> ngẫu nhiên <strong>{{item.value}}</strong> lần. (Tổng: {{jackpot.getRandomLog(item.key)}} lần)
             </div>
             <div ng-if="!jackpot.nRandomList || !jackpot.nRandomList.length" class="item">
                 <div class="button button-block" ng-disabled="true">Chưa có thống kê</div>

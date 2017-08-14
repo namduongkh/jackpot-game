@@ -15,8 +15,8 @@
             return [null, null, null, null, null, null];
         };
 
-        function initSaveLog() {
-            jackpot.saveLog = JackpotSvc.getSaveLog() || [];
+        function initSaveLog(logs) {
+            jackpot.saveLog = logs || JackpotSvc.getSaveLog() || [];
         }
 
         function initRandomLog() {
@@ -126,6 +126,7 @@
         }
 
         function setAndLogResult(pos, value) {
+            console.log("pos", pos);
             jackpot.result[pos] = value;
             if (!jackpot.randomLog[value]) {
                 jackpot.randomLog[value] = 0;
@@ -359,7 +360,10 @@
             initSaveLog();
             jackpot.saveLogList = jackpot.saveLog.map(function(item) {
                 return item.split(",");
-            })
+            });
+            $rootScope.$on("REFRESH_SAVELOG", function(e, data) {
+                jackpot.saveLogInit();
+            });
         };
 
         jackpot.nRandomSpeedChange = function() {
@@ -437,5 +441,7 @@
                 return a - b;
             });
         };
+
+
     }
 })();
