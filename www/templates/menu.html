@@ -1,12 +1,9 @@
 <ion-side-menus enable-menu-with-back-views="false">
     <ion-side-menu-content>
         <ion-nav-bar class="bar-assertive">
-            <ion-nav-back-button>
-            </ion-nav-back-button>
-
+            <ion-nav-back-button></ion-nav-back-button>
             <ion-nav-buttons side="left">
-                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
             </ion-nav-buttons>
         </ion-nav-bar>
         <ion-nav-view name="menuContent"></ion-nav-view>
@@ -18,17 +15,14 @@
         </ion-header-bar>
         <ion-content>
             <ion-list>
-                <!--<ion-item menu-close href="#/app/thong-ke">
-                    Thống kê
-                </ion-item>-->
                 <ion-item data-ui-sref="app.jackpot">
                     <i class="icon ion-flash"></i> Ngẫu nhiên Jackpot
                 </ion-item>
-                <ion-item data-ui-sref="app.nRandom">
-                    <i class="icon ion-flash"></i> Sinh số ngẫu nhiên
-                </ion-item>
                 <ion-item data-ui-sref="app.nRandomFast">
                     <i class="icon ion-flash"></i> Sinh số nhanh
+                </ion-item>
+                <ion-item data-ui-sref="app.nRandom">
+                    <i class="icon ion-flash"></i> Chạy ngẫu nhiên
                 </ion-item>
                 <ion-item data-ui-sref="app.saveLog">
                     <i class="icon ion-flash"></i> Lưu trữ Jackpot
@@ -44,5 +38,10 @@
                 </ion-item>
             </ion-list>
         </ion-content>
+        <ion-footer-bar class="bar-calm" ng-click="rootCtrl.openAddLogPopup()">
+            <div class="title add-save-log">
+                <i class="icon ion-edit"></i> Ghi chú dãy số
+            </div>
+        </ion-footer-bar>
     </ion-side-menu>
 </ion-side-menus>

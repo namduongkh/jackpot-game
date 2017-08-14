@@ -8,7 +8,8 @@
         var winning = this;
         winning.winningData = "";
         var showPopup = false;
-        winning.getWinningData = function(page) {
+        winning.getWinningData = function(page, cb) {
+            cb = cb || function() {};
             $http({
                     method: 'get',
                     url: 'http://vietlott.vn/vi/trung-thuong/ket-qua-trung-thuong/mega-6-45/winning-numbers/?p=' + page
@@ -22,6 +23,7 @@
                             s1 = s1.replace(/href="[^"]+"/g, "");
                             winning.winningData = $sce.trustAsHtml(winning.winningData + s1);
                         });
+                        cb();
                     }
                 })
                 .catch(function(err) {
@@ -33,9 +35,9 @@
                 });
         }
 
-        for (var i = 0; i < 5; i++) {
-            winning.getWinningData(i + 1);
-        }
+        async.eachSeries([0, 1, 2, 3, 4, 5], function(item, cb) {
+            winning.getWinningData(item + 1, cb);
+        }, function() {});
 
         winning.showAlert = function() {
             var alertPopup = $ionicPopup.alert({

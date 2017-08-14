@@ -116,7 +116,7 @@
                     } else {
                         jackpot.step++;
                     }
-                }, 500);
+                }, 250);
             }
         };
 
@@ -185,8 +185,11 @@
 
         jackpot.save = function(list) {
             var list = list || jackpot.result;
-            jackpot.saveLog.unshift(list.join(","));
-            JackpotSvc.setSaveLog(jackpot.saveLog);
+            list = list.join(",");
+            if (list) {
+                jackpot.saveLog.unshift();
+                JackpotSvc.setSaveLog(jackpot.saveLog);
+            }
             // console.log(jackpot.saveLog);
         };
 

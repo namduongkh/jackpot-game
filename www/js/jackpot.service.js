@@ -35,7 +35,7 @@
                 if (statisticData && statisticData.data && statisticData.data[Number(number)]) {
                     statistic = Number(statisticData.data[Number(number)].value);
                 }
-                return { random, statistic };
+                return { random: random, statistic: statistic };
             },
         };
     }

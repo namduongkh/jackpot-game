@@ -59,6 +59,21 @@
             // });
         };
 
+        statistic.sortOptions = [{
+            name: "Số tăng dần",
+            value: 1
+        }, {
+            name: "Số giảm dần",
+            value: 2
+        }, {
+            name: "Xuất hiện tăng dần",
+            value: 3
+        }, {
+            name: "Xuất hiện giảm dần",
+            value: 4
+        }];
+        statistic.sortCond = statistic.sortOptions[0].value;
+
         // console.log(JackpotSvc.getNumberData(40));
     }
 })();
