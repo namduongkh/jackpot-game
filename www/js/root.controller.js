@@ -35,7 +35,7 @@
                                 rootCtrl.logListErr = error;
                                 e.preventDefault();
                             }
-                            var pattern = /\d{1,2},\d,\d,\d,\d,\d/gi;
+                            var pattern = /\d{1,2},\d{1,2},\d{1,2},\d{1,2},\d{1,2},\d{1,2}/gi;
                             if (!rootCtrl.logList || !pattern.test(rootCtrl.logList)) {
                                 //don't allow the user to close unless he enters wifi password
                                 error("Vui lòng nhập đúng định dạng dãy số");

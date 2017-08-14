@@ -5,6 +5,9 @@
             <ion-nav-buttons side="left">
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
             </ion-nav-buttons>
+            <ion-nav-buttons side="right">
+                <button ng-click="rootCtrl.openAddLogPopup()" class="button button-icon button-clear ion-flag add-save-log"></button>
+            </ion-nav-buttons>
         </ion-nav-bar>
         <ion-nav-view name="menuContent"></ion-nav-view>
     </ion-side-menu-content>
@@ -40,7 +43,7 @@
         </ion-content>
         <ion-footer-bar class="bar-calm" ng-click="rootCtrl.openAddLogPopup()">
             <div class="title add-save-log">
-                <i class="icon ion-edit"></i> Ghi chú dãy số
+                <i class="icon ion-flag"></i> Đánh dấu dãy số
             </div>
         </ion-footer-bar>
     </ion-side-menu>

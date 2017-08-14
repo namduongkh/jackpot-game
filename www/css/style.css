@@ -206,3 +206,7 @@
     font-size: 14px;
     font-weight: normal;
 }
+
+.button.add-save-log::before {
+    font-size: 25px !important;
+}
