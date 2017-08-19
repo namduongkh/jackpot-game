@@ -4,7 +4,7 @@
     angular.module("Jackpot")
         .controller('StatisticCtrl', StatisticCtrl);
 
-    function StatisticCtrl($http, JackpotSvc, $ionicPopup) {
+    function StatisticCtrl($http, JackpotSvc, $ionicPopup, ConfigSvc) {
         var statistic = this;
 
         var data = JackpotSvc.getStatistic();
@@ -13,7 +13,7 @@
         statistic.getStatisticData = function() {
             $http({
                     method: 'GET',
-                    url: 'http://vietlott.vn/vi/choi/mega-6-45/thong-ke/?FromDate=01%2F08%2F2016'
+                    url: ConfigSvc.statisticUrl
                 })
                 .then(function(resp) {
                     if (resp.status == 200) {

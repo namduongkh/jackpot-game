@@ -210,3 +210,19 @@
 .button.add-save-log::before {
     font-size: 25px !important;
 }
+
+.result-detail {
+    text-align: center;
+    background: #01022D;
+    color: #fff;
+}
+
+.result-detail h4.jackpot-value {
+    font-size: 35px;
+    color: red;
+}
+
+.result-detail .result-number {
+    width: 300px;
+    margin: 0 auto;
+}

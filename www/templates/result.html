@@ -1,0 +1,21 @@
+<ion-view view-title="Kết quả trúng thưởng">
+    <ion-content>
+        <!--<div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="number" min="0" max="45" step="1" ng-model="statistic.filterNumber" placeholder="Lọc số thống kê">
+            </label>
+        </div>
+        <ul ng-if="statistic.statisticData.length" class="list">
+            <li class="item item-icon-left" ng-repeat="item in (statistic.statisticData | statisticNumber:statistic.filterNumber) track by $index">
+                <i class="icon ion-ios-information-outline"></i> Số lần xuất hiện của <strong>{{rootCtrl.processNumber(item.key)}}</strong>:
+                <span class="badge badge-assertive">{{item.value}}</span>
+            </li>
+        </ul>-->
+        <button ng-if="!result.resultDetail" class="button button-full button-default" disabled>
+            Không có dữ liệu
+        </button>
+        <div class="result-detail" ng-bind-html="result.resultDetail"></div>
+        <div class="result-prize" ng-bind-html="result.resultPrize"></div>
+    </ion-content>
+</ion-view>

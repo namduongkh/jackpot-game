@@ -93,6 +93,15 @@ angular.module('Jackpot', ['ionic', 'LocalStorageModule'])
                     controller: 'WinningController as winning'
                 }
             }
+        })
+        .state('app.result', {
+            url: '/result',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/result.html',
+                    controller: 'ResultController as result'
+                }
+            }
         });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/jackpot');
